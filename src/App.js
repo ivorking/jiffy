@@ -1,8 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
+import Header from "./Header.js";
 
-export default () => (
-  <>
-    <h1>Welcome to React Parcel Micro App!</h1>
-    <p>Hard to get more minimal than this React app.</p>
-  </>
-);
+class App extends Component {
+   render() {
+      return (
+         <div className="App">
+            <Header />
+            <p>Hello!</p>
+         </div>
+      );
+   }
+}
+
+export default App;
