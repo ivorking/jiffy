@@ -1,12 +1,20 @@
 import React, { Component } from "react";
-import Header from "./Header.js";
+
+const Header = () => (
+   <div className = 'header grid'>
+      <h1 className = 'title'>Jiffy</h1>
+   </div>
+)
 
 class App extends Component {
    render() {
       return (
-         <div className="App">
+         <div className="page">
             <Header />
-            <p>Hello!</p>
+            <div className="search grid">
+               <input className="input grid-item" placeholder="Type something" />
+
+            </div>
          </div>
       );
    }
