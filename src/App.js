@@ -31,7 +31,8 @@ class App extends Component {
          // take old props
          ...prevState,
          // overwrite old props with new values
-         searchTerm: value
+         searchTerm: value,
+         hintText: value.length > 2 ? `Hit enter to search ${value}` : '''
       }));
    };
 
@@ -58,6 +59,7 @@ class App extends Component {
                   value={searchTerm}
                />
             </div>
+            <UserHint {...this.state} />
          </div>
       );
    }
