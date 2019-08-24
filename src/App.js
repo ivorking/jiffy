@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import loader from './images/loader.svg';
 import { timingSafeEqual } from "crypto";
 
 const Header = () => (
@@ -7,27 +8,31 @@ const Header = () => (
    </div>
 )
 
+const UserHint = ({loading, hintText}) => (
+   <div className = 'user-hint'>
+      {loading ? <img className="block mx-auto" src={loader} /> : hintText}
+   </div>
+)
+
 class App extends Component {
 
    constructor(props) {
       super(props);
       this.state = {
-         searchTerm: ''
+         searchTerm: '',
+         hintText: 'Hit enter to search'
       }
    }
 
    handleChange = event => {
       const {value} = event.target;
+      // setting searchTerm in state and using on the input as the value, created a controlled input
       this.setState((prevState, props) => ({
          // take old props
          ...prevState,
          // overwrite old props with new values
          searchTerm: value
       }));
-      console.log(value)
-      if (value.length > 2 ) {
-
-      }
    };
 
    handleKeyPress = event => {
