@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import loader from './images/loader.svg';
+import loader from '../assets/loader.svg';
 import { timingSafeEqual } from "crypto";
 
 const Header = () => (
@@ -32,7 +32,7 @@ class App extends Component {
          ...prevState,
          // overwrite old props with new values
          searchTerm: value,
-         hintText: value.length > 2 ? `Hit enter to search ${value}` : '''
+         hintText: value.length > 2 ? `Hit enter to search ${value}` : ''
       }));
    };
 
