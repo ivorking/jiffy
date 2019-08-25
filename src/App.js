@@ -24,6 +24,16 @@ class App extends Component {
       }
    }
 
+   searchGiphy = async searchTerm => {
+      try {
+         const response = await fetch(
+            'https://api.giphy.com/v1/gifs/search?api_key=9M9YA08KMs8ABCUaNn9XzG3LVp6RvJ9l&q=dog&limit=25&offset=0&rating=R&lang=en'
+         );
+         const data = await response.json();
+         console.log(data);
+      } catch (error) {}
+   }
+
    handleChange = event => {
       const {value} = event.target;
       // setting searchTerm in state and using on the input as the value, created a controlled input
@@ -41,7 +51,7 @@ class App extends Component {
       const {value} = event.target;
 
       if (value.length > 2 && event.key === 'Enter') {
-         alert(`search for ${value}`);
+         this.searchGiphy(value);
       }
    }
 
