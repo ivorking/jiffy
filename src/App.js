@@ -39,10 +39,9 @@ class App extends Component {
 
          const randomGif = randomChoice(data)
 
-
          this.setState((prevState, props) => ({
             ...prevState,
-            gif: data[0]
+            gif: randomGif
          }))
       } catch (error) {}
    }
