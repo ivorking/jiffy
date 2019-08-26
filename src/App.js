@@ -36,7 +36,6 @@ class App extends Component {
             `https://api.giphy.com/v1/gifs/search?api_key=9M9YA08KMs8ABCUaNn9XzG3LVp6RvJ9l&q=${searchTerm}&limit=25&offset=0&rating=R&lang=en`
          );
          const {data} = await response.json();
-
          const randomGif = randomChoice(data)
 
          this.setState((prevState, props) => ({
@@ -69,9 +68,11 @@ class App extends Component {
 
    render() {
       const {searchTerm, gif} = this.state
+
       return (
          <div className="page">
             <Header />
+            
             <div className="search grid">
                {gif && <video
                   className='grid-item video'
@@ -91,6 +92,7 @@ class App extends Component {
             <UserHint {...this.state} />
          </div>
       );
+
    }
 }
 
