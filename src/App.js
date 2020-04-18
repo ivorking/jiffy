@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import loader from '../assets/loader.svg';
+import Gif from '../src/Gif.js';
 import { timingSafeEqual } from "crypto";
 
 const randomChoice = arr => {
@@ -26,7 +27,8 @@ class App extends Component {
       this.state = {
          searchTerm: '',
          hintText: 'Hit enter to search',
-         gif: null
+         gif: null,
+         gifs: []
       };
    }
 
@@ -40,7 +42,8 @@ class App extends Component {
 
          this.setState((prevState, props) => ({
             ...prevState,
-            gif: randomGif
+            gif: randomGif,
+            gifs: [...prevState.gifs, randomGif]
          }))
       } catch (error) {}
    }
@@ -67,20 +70,16 @@ class App extends Component {
    }
 
    render() {
-      const {searchTerm, gif} = this.state
+      const {searchTerm, gif} = this.state;
 
       return (
          <div className="page">
             <Header />
             
             <div className="search grid">
-               {gif && <video
-                  className='grid-item video'
-                  autoPlay
-                  loop
-                  src={gif.images.original.mp4}
-                  />
-               }
+               {this.state.gifs.map(gif => (
+                  <Gif {...gif} />
+               ))}
                <input 
                   className="input grid-item" 
                   placeholder="Type something" 
