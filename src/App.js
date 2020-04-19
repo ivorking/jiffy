@@ -28,6 +28,7 @@ class App extends Component {
          searchTerm: '',
          hintText: 'Hit enter to search',
          gif: null,
+         // store in an array
          gifs: []
       };
    }
@@ -43,8 +44,9 @@ class App extends Component {
          this.setState((prevState, props) => ({
             ...prevState,
             gif: randomGif,
+            // take previous gifs and spread out
             gifs: [...prevState.gifs, randomGif]
-         }))
+         }));
       } catch (error) {}
    }
 
@@ -78,7 +80,8 @@ class App extends Component {
             
             <div className="search grid">
                {this.state.gifs.map(gif => (
-                  <Gif {...gif} />
+                  <video className = "grid-item video" autoPlay loop src=
+                  {gif.images.original.mp4}
                ))}
                <input 
                   className="input grid-item" 
