@@ -28,7 +28,6 @@ class App extends Component {
          loading: false,
          searchTerm: '',
          hintText: 'Hit enter to search',
-         gif: null,
          // store in an array
          gifs: []
       };
@@ -54,8 +53,7 @@ class App extends Component {
 
          this.setState((prevState, props) => ({
             ...prevState,
-            gif: randomGif,
-            // take previous gifs and spread out
+             // take previous gifs and spread out
             gifs: [...prevState.gifs, randomGif],
             loading: false,
             hintText: `Hit enter to seem more ${searchTerm}`
@@ -83,12 +81,20 @@ class App extends Component {
    };
 
    handleKeyPress = event => {
-      console.log(event.key)
       const {value} = event.target;
 
       if (value.length > 2 && event.key === 'Enter') {
          this.searchGiphy(value);
       }
+   }
+
+   clearSearch = () => {
+      this.setState((prevState, props) => ({
+         ...prevState,
+         searchTerm: '',
+         hintText: '',
+         gifs: []
+      }))
    }
 
    render() {
@@ -98,6 +104,8 @@ class App extends Component {
          <div className="page">
             <Header />
             
+            <h1 onClick = {this.clearSearch}>Clear search</h1>
+
             <div className="search grid">
                {this.state.gifs.map(gif => (
                   <Gif {...gif} />
