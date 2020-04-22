@@ -25,6 +25,7 @@ class App extends Component {
    constructor(props) {
       super(props);
       this.state = {
+         loading: false,
          searchTerm: '',
          hintText: 'Hit enter to search',
          gif: null,
@@ -34,20 +35,39 @@ class App extends Component {
    }
 
    searchGiphy = async searchTerm => {
+   
+      this.setState({
+         loading: true
+      })
+
       try {
          const response = await fetch(
             `https://api.giphy.com/v1/gifs/search?api_key=9M9YA08KMs8ABCUaNn9XzG3LVp6RvJ9l&q=${searchTerm}&limit=25&offset=0&rating=R&lang=en`
          );
          const {data} = await response.json();
+
+         if (!data.length) {
+            throw `Nothing found for ${searchTerm}`
+         }
+
          const randomGif = randomChoice(data)
 
          this.setState((prevState, props) => ({
             ...prevState,
             gif: randomGif,
             // take previous gifs and spread out
-            gifs: [...prevState.gifs, randomGif]
+            gifs: [...prevState.gifs, randomGif],
+            loading: false,
+            hintText: `Hit enter to seem more ${searchTerm}`
          }));
-      } catch (error) {}
+
+      } catch (error) {
+         this.setState((prevState, props) => ({
+            ...prevState,
+            hintText: error,
+            loading: false
+         }));
+      }
    }
 
    handleChange = event => {
@@ -80,8 +100,7 @@ class App extends Component {
             
             <div className="search grid">
                {this.state.gifs.map(gif => (
-                  <video className = "grid-item video" autoPlay loop src=
-                  {gif.images.original.mp4}
+                  <Gif {...gif} />
                ))}
                <input 
                   className="input grid-item" 

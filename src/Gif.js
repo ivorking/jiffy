@@ -14,10 +14,11 @@ constructor(props) {
         const {images} = this.props
         return (
             <video
-                className='grid-item video'
+                className={`grid-item video ${loaded && 'loaded'}`}
                 autoPlay
                 loop
                 src={images.original.mp4}
+                onLoadedData={() => this.setState({loaded: true})}
             />
         )
     }
