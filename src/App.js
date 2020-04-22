@@ -27,7 +27,6 @@ const UserHint = ({loading, hintText}) => (
 )
 
 class App extends Component {
-
    constructor(props) {
       super(props);
       this.state = {
@@ -88,7 +87,6 @@ class App extends Component {
 
    handleKeyPress = event => {
       const {value} = event.target;
-
       if (value.length > 2 && event.key === 'Enter') {
          this.searchGiphy(value);
       }
@@ -98,7 +96,7 @@ class App extends Component {
       this.setState((prevState, props) => ({
          ...prevState,
          searchTerm: '',
-         hintText: 'empty',
+         hintText: '',
          gifs: []
       }));
       this.textInput.focus();
