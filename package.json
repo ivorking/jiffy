@@ -2,15 +2,17 @@
   "name": "jiffy",
   "version": "0.1.0",
   "description": "",
+  "private": true,
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "react-scripts start",
+    "build": "react-scripts build" 
   },
   "type": "module",
   "license": "MIT",
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-scripts": "^1.0.17"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
