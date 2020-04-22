@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build" 
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "type": "module",
   "license": "MIT",
