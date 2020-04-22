@@ -98,7 +98,7 @@ class App extends Component {
       this.setState((prevState, props) => ({
          ...prevState,
          searchTerm: '',
-         hintText: 'empty',
+         hintText: 'emptynow',
          gifs: []
       }));
       this.textInput.focus();
