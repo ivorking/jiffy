@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import loader from '../assets/loader.svg';
+import clearButton from '../assets/close-icon.svg';
 import Gif from '../src/Gif.js';
-import { timingSafeEqual } from "crypto";
 
 const randomChoice = arr => {
    const randIndex = Math.floor(Math.random() * arr.length)
    return arr[randIndex]
 }
 
-const Header = () => (
+const Header = ({clearSearch, hasResults}) => (
    <div className = 'header grid'>
-      <h1 className = 'title'>Jiffy</h1>
+      {hasResults ? (
+         <button onClick = {clearSearch}>
+            <img src={clearButton} />
+         </button>
+      ) : (
+        <h1 className="title">Jiffy</h1> 
+      )}
    </div>
 )
 
@@ -98,14 +104,12 @@ class App extends Component {
    }
 
    render() {
-      const {searchTerm, gif} = this.state;
+      const {searchTerm, gifs} = this.state;
+      const hasResults = gifs.length;
 
       return (
          <div className="page">
-            <Header />
-            
-            <h1 onClick = {this.clearSearch}>Clear search</h1>
-
+            <Header clearSearch = {this.clearSearch} hasResults = {hasResults} />
             <div className="search grid">
                {this.state.gifs.map(gif => (
                   <Gif {...gif} />
