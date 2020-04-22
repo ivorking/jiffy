@@ -98,9 +98,10 @@ class App extends Component {
       this.setState((prevState, props) => ({
          ...prevState,
          searchTerm: '',
-         hintText: '',
+         hintText: 'empty',
          gifs: []
-      }))
+      }));
+      this.textInput.focus();
    }
 
    render() {
@@ -120,6 +121,9 @@ class App extends Component {
                   onChange={this.handleChange}
                   onKeyPress={this.handleKeyPress}
                   value={searchTerm}
+                  ref={input => {
+                     this.textInput = input; 
+                  }}
                />
             </div>
             <UserHint {...this.state} />
